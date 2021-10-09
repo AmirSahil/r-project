@@ -1,0 +1,153 @@
+---
+title: "Lecture01"
+author: "Amir Sahil"
+date: "09/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Vectors
+
+```{r}
+x <- c(1,3,5,2,7,9,10,14,35)
+x
+x[3]
+x[c(5,6)]
+x[2:5]
+```
+
+```{r}
+z <- c('Bristol','Bath','London')
+w <- c(TRUE,FALSE,TRUE,FALSE)
+a <- c(TRUE, 3, 'London')
+z
+w
+a
+mode(x)
+mode(z)
+mode(w)
+mode(a)
+```
+
+## Lists
+
+```{r}
+first_list <- list(TRUE, 3, "Bristol")
+first_list
+```
+
+```{r}
+second_list <- list(t_value=TRUE, num_value=3, city= "Bristol")
+second_list
+second_list$t_value
+second_list$num_value
+second_list$city
+```
+
+## Matrices
+
+```{r}
+M <- matrix(seq(10), 2, 5)
+M
+M[2,4]
+M[,4]
+M[2,]
+is.vector(M[2,])
+```
+
+## Dataframes
+
+```{r}
+city_name <- c("Bristol", "Manchester", "Birmingham", "London")
+population <- c(0.5,0.5,1,9)
+
+first_data_frame <- data.frame(city_name,population)
+first_data_frame
+```
+
+## Arithmetic operations
+
+```{r}
+(((4+2-1)*4)/2)^2
+```
+
+```{r}
+a <- matrix(sample(1:10, 6, replace = T),2,3)
+b <- matrix(sample(1:10, 6, replace = T),2,3)
+a
+b
+a*b
+a %*% t(b)
+```
+
+## Boolean operations
+
+```{r}
+a <- c(TRUE,TRUE,FALSE,FALSE)
+b <- c(TRUE,FALSE,TRUE,FALSE)
+!a
+a&b
+a|b
+xor(a,b)
+```
+
+## Prime number function
+
+```{r}
+is_prime <- function(num){
+  stopifnot(is.numeric(num), num%%1 == 0, num>1)
+  t_val <- TRUE
+  if (num<2){
+    t_val <- FALSE
+  } else if (num>2){
+    for(i in 2:sqrt(num)){
+      if(num%%i==0){
+        t_val <- FALSE
+        break
+      }
+    }
+  }
+  return(t_val)
+}
+```
+
+```{r}
+is_prime(30)
+sqrt(30)
+2:sqrt(30)
+```
+
+```{r}
+for(i in 2:sqrt(10)){
+  print(i)
+}
+```
+
+## Call by value semantics
+
+```{r}
+a <- seq(5,2)
+
+demo <- function(x){
+  x[2] <- -10
+  print(x)
+} 
+
+print(a)
+demo(a)
+```
+
+## Lazy evaluation
+
+```{r}
+
+```
+
+## 
+
+```{r}
+
+```
