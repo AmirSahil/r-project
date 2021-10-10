@@ -1,0 +1,77 @@
+---
+title: "Data Visualisation L03"
+author: "Amir Sahil"
+date: "10/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data visualisation
+
+```{r}
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+## Palmers penguins
+
+```{r}
+install.packages("palmerpenguins")
+```
+
+```{r}
+library(palmerpenguins)
+head(penguins)
+```
+## Univariate Plots
+
+```{r}
+univar_plot <- ggplot(data = penguins, aes(x=flipper_length_mm)) + xlab("Flipper length (mm)")
+univar_plot + geom_histogram(binwidth = 5) + ylab("Count")
+```
+
+### Density Plot
+
+```{r}
+univar_plot + geom_density(adjust = 0.5) + ylab("Density")
+```
+
+### Bivariate plots
+
+```{r}
+ggplot(data = rename(penguins, Species = species), aes(x=flipper_length_mm, color=Species)) + geom_density() + theme_bw() + xlab("Flipper Length (mm)") + ylab("Density")
+```
+
+```{r}
+ggplot(data = penguins, aes(x=flipper_length_mm, y=species)) + geom_boxplot() + xlab("Flipper lenght (mm)") + ylab("Penguin species")
+```
+
+```{r}
+ggplot(data=rename(penguins, Species=species), aes(x=flipper_length_mm, y=Species, fill=Species)) + geom_violin() + theme_bw() + xlab("Flipper length (mm)")
+```
+```{r}
+mass_flipper_scatter <- ggplot(data=penguins, aes(y=body_mass_g, x=flipper_length_mm)) + xlab("Flipper length (mm)") + ylab("Body mass(g)")
+mass_flipper_scatter + geom_point(size=3)
+```
+
+## Multivariate Plots
+
+```{r}
+mass_flipper_scatter + geom_point(aes(color = bill_length_mm), size=3) + scale_color_gradient(low="blue", high="red")+guides(color=guide_legend("Bill length (mm)"))
+```
+
+```{r}
+mass_flipper_scatter + geom_text(aes(label=species, color=species)) + guides(color=guide_legend("Species"))
+```
+
+```{r}
+mass_flipper_scatter + geom_point() + facet_wrap(~species)
+```
+
+```{r}
+trend_plot <- ggplot(data=filter(penguins, species =="Gentoo"), aes(y=body_mass_g, x=flipper_length_mm)) + xlab("Flipper length (mm)") + ylab("Body mass (g)") + geom_point()
+trend_plot + geom_smooth()
+```
