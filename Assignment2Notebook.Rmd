@@ -34,10 +34,65 @@ hawksSmall<-drop_na(select(Hawks,Age,Day,Month,Year,CaptureTime,Species,Wing,Wei
 ```
 
 ```{r}
+dim(hawksSmall)
 head(hawksSmall,5)
 ```
 
 ```{r}
- ggplot(data=hawksSmall,aes(x=Weight))+geom_histogram(binwidth=100)+
-  xlab("Weight (gm)")+ylab("Count")
+a <- ggplot(hawksSmall) 
+b <- a + aes(Weight)
+c <- b + geom_histogram(binwidth = 100)
+c
+```
+
+```{r}
+colnames(hawksSmall)
+b <- a + aes(Tail)
+c <- b + geom_density()
+c
+```
+
+```{r}
+colnames(hawksSmall)
+b <- a + aes(Tail)
+c <- b + geom_density(adjust = 0.5)
+c
+```
+
+```{r}
+b <- a + aes(Tail)
+c <- b + geom_density(adjust = 1)
+c
+```
+
+```{r}
+b <- a + aes(Tail, color = Species)
+c <- b + geom_density()
+c
+```
+
+```{r}
+b <- a + aes(Tail, Species, fill = Species)
+c <- b + geom_violin()
+d <- c + theme_bw()
+d
+```
+
+```{r}
+b <- a + aes(Tail, Weight, color = Species, shape = Species)
+c <- b + geom_point() 
+d <- c + theme_bw()
+d
+```
+
+```{r}
+b <- a + aes(Tail, Weight, color = Species)
+c <- b + geom_point() + geom_smooth(method = "lm")
+d <- c + facet_wrap(~Species, scales = "free")
+e <- d + theme_bw()
+e
+```
+
+```{r}
+
 ```

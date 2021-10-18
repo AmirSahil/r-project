@@ -31,6 +31,10 @@ head(penguins)
 ```{r}
 univar_plot <- ggplot(data = penguins, aes(x=flipper_length_mm)) + xlab("Flipper length (mm)")
 univar_plot + geom_histogram(binwidth = 5) + ylab("Count")
+
+a <- ggplot(penguins)
+b <- a + 
+
 ```
 
 ### Density Plot
